@@ -1,24 +1,25 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.shortcuts import get_object_or_404, render
 from .models import Choice, Question
 from django.urls import reverse
+from django.views import generic
 
-def index(request): #This is the home page of the Website
-	latest_questions_list = Question.objects.order_by('-pub_date')[ :5]
-	context = { 'latest_questions_list' : latest_questions_list	}
-	return render(request, 'pollsapp/index.html', context)
+class IndexView(generic.ListView): #This is the home page of the Website
+	template_name = 'pollsapp/index.html'
+	context_object_name = 'latest_question_list'
+	def get_queryset(self):
+		return Question.objects.order_by('-pub_date')[:5]
 
-def detail(request, question_id):
-	try:
-		question = Question.objects.get(pk=question_id)
-	except Question.DoesNotExist:
-		raise Http404("Question does not exist")
-	return render (request, 'pollsapp/detail.html', {'question': question})
 
-def results(request, question_id):
-	question = get_object_or_404(Question, pk=question_id)
-	return render(request, 'pollsapp/results.html', {'question': question})
+class DetailView(generic.DetailView):
+	model = Question
+	template_name = 'pollsapp/detail.html'
+
+class ResultsView(generic.DetailView):
+	model = Question
+	template_name = 'pollsapp/results.html'
 
 def vote(request, question_id):
 	question = get_object_or_404(Question, pk=question_id)
