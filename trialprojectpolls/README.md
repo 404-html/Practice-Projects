@@ -1,7 +1,7 @@
-#### Project Title
+## Project Title
 This is my attempt for the Polls Project.
 
-#### Installation
+## Installation
 
 1. Clone or download the repository.
 
