@@ -5,9 +5,9 @@ This is my attempt for the Polls Project.
 
 1. Clone or download the repository.
 
-2. Install required python libraries giving in the requirements.txt file.
+2. Install required python libraries given in the requirements.txt file.
 ```
-  pip install -r requirement.txt
+  pip install -r requirements.txt
 ```
 3. Run Django migrations
 ```
