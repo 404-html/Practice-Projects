@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Table!</title>
+  </head>
+  <body>
+
+    <h1>This is the table!</h1>
+
+    {% if insert %}
+      <table border="4px solid black">
+
+        <thead>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </thead>
+
+        {% for users in insert %}
+          <tr>
+            <td>{{ users.first_name }}</td>
+            <td>{{ users.last_name }}</td>
+            <td>{{ users.email }}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <h1>No User Found!</h1>
+      {% endif %}
+
+      </table>
+
+  </body>
+</html>
